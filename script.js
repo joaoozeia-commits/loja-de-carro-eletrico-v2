@@ -61,7 +61,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     adminLoginForm.addEventListener('submit', (e) => {
         e.preventDefault();
-        alert('Tentativa de login enviada. (Demonstração do Painel Administrativo)');
+        alert('Tentativa de login enviada.');
         toggleModal(false);
         adminLoginForm.reset();
     });
