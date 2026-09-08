@@ -22,6 +22,7 @@
                     <li><a href="#modelos">Modelos</a></li>
                     <li><a href="#sobre">Sobre</a></li>
                     <li><a href="#contato">Contato</a></li>
+                    <li><button id="btn-open-admin" class="btn-link">Área Admin</button></li>
                 </ul>
             </nav>
 
@@ -84,7 +85,72 @@
                 </div>
             </div>
         </section>
+
+        <section id="sobre" class="about-section">
+            <div class="container">
+                <h2>Sobre a Voltron EV</h2>
+                <p>Nascemos com o propósito de acelerar a transição global para a energia sustentável. Nossos veículos combinam engenharia de precisão, zero emissões de carbono e software de última geração para oferecer a melhor experiência ao condutor.</p>
+            </div>
+        </section>
+
+        <section id="contato" class="contact-section">
+            <div class="container">
+                <h2>Entre em Contato</h2>
+                <p class="section-subtitle">Tire suas dúvidas ou agende um Test Drive com nossa equipe especialista.</p>
+
+                <form id="contact-form" class="form-container" novalidate>
+                    <div class="form-group">
+                        <label for="name">Nome completo:</label>
+                        <input type="text" id="name" name="name" required placeholder="Digite seu nome">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">E-mail de contato:</label>
+                        <input type="email" id="email" name="email" required placeholder="seuemail@exemplo.com">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="subject">Assunto:</label>
+                        <select id="subject" name="subject" required>
+                            <option value="">Selecione uma opção</option>
+                            <option value="test-drive">Agendar Test Drive</option>
+                            <option value="duvidas">Dúvidas sobre os Modelos</option>
+                            <option value="suporte">Suporte Técnico</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">Mensagem:</label>
+                        <textarea id="message" name="message" rows="5" required placeholder="Escreva sua mensagem aqui..."></textarea>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Enviar Mensagem</button>
+                    <div id="form-feedback" class="form-feedback" role="alert" aria-live="polite"></div>
+                </form>
+            </div>
+        </section>
     </main>
+
+    <!-- Modal Área Administrativa -->
+    <div id="admin-modal" class="modal" aria-hidden="true" role="dialog" aria-labelledby="modal-title">
+        <div class="modal-content">
+            <button id="btn-close-admin" class="modal-close" aria-label="Fechar janela de login">&times;</button>
+            <h2 id="modal-title">Acesso Administrativo</h2>
+            <p>Insira suas credenciais corporativas para acessar o painel de controle.</p>
+            
+            <form id="admin-login-form">
+                <div class="form-group">
+                    <label for="admin-user">Usuário:</label>
+                    <input type="text" id="admin-user" required placeholder="Sua id corporativa">
+                </div>
+                <div class="form-group">
+                    <label for="admin-pass">Senha:</label>
+                    <input type="password" id="admin-pass" required placeholder="••••••••">
+                </div>
+                <button type="submit" class="btn btn-primary btn-full">Entrar na Área Admin</button>
+            </form>
+        </div>
+    </div>
 
     <footer class="footer">
         <div class="container footer-content">
