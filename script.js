@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Alternância de Tema (Claro / Escuro)
+    // 1. Alternância de Tema (Claro / Escuro)
     const themeToggleBtn = document.getElementById('btn-toggle-theme');
     const htmlElement = document.documentElement;
 
@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
         themeToggleBtn.setAttribute('aria-label', `Alternar para modo ${newTheme === 'dark' ? 'claro' : 'escuro'}`);
     });
 
-    // Controle de Acessibilidade: Escala de Fonte
+    // 2. Controle de Acessibilidade: Escala de Fonte
     const btnIncrease = document.getElementById('btn-increase-font');
     const btnDecrease = document.getElementById('btn-decrease-font');
     const btnReset = document.getElementById('btn-reset-font');
@@ -29,18 +29,63 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     btnIncrease.addEventListener('click', () => {
-        if (currentScale < maxScale) {
-            updateFontScale(currentScale + scaleStep);
-        }
+        if (currentScale < maxScale) updateFontScale(currentScale + scaleStep);
     });
 
     btnDecrease.addEventListener('click', () => {
-        if (currentScale > minScale) {
-            updateFontScale(currentScale - scaleStep);
-        }
+        if (currentScale > minScale) updateFontScale(currentScale - scaleStep);
     });
 
-    btnReset.addEventListener('click', () => {
-        updateFontScale(1);
+    btnReset.addEventListener('click', () => updateFontScale(1));
+
+    // 3. Modal da Área Administrativa
+    const adminModal = document.getElementById('admin-modal');
+    const btnOpenAdmin = document.getElementById('btn-open-admin');
+    const btnCloseAdmin = document.getElementById('btn-close-admin');
+    const adminLoginForm = document.getElementById('admin-login-form');
+
+    function toggleModal(open) {
+        adminModal.classList.toggle('active', open);
+        adminModal.setAttribute('aria-hidden', !open);
+        if (open) {
+            document.getElementById('admin-user').focus();
+        }
+    }
+
+    btnOpenAdmin.addEventListener('click', () => toggleModal(true));
+    btnCloseAdmin.addEventListener('click', () => toggleModal(false));
+
+    window.addEventListener('click', (e) => {
+        if (e.target === adminModal) toggleModal(false);
+    });
+
+    adminLoginForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        alert('Tentativa de login enviada. (Demonstração do Painel Administrativo)');
+        toggleModal(false);
+        adminLoginForm.reset();
+    });
+
+    // 4. Validação e envio do Formulário de Contato
+    const contactForm = document.getElementById('contact-form');
+    const formFeedback = document.getElementById('form-feedback');
+
+    contactForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        
+        const name = document.getElementById('name').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const subject = document.getElementById('subject').value;
+        const message = document.getElementById('message').value.trim();
+
+        if (!name || !email || !subject || !message) {
+            formFeedback.textContent = 'Por favor, preencha todos os campos do formulário.';
+            formFeedback.className = 'form-feedback error';
+            return;
+        }
+
+        formFeedback.textContent = 'Obrigado! Sua mensagem foi enviada com sucesso.';
+        formFeedback.className = 'form-feedback success';
+        contactForm.reset();
     });
 });
